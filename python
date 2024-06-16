@@ -1,0 +1,24 @@
+import random
+
+#stating the rules
+print("ROCK,PAPPER,SCISSOR   GAME!!\n")
+print(
+    "rules of the game\n\n a)ROCK BEATS SCISSOR\n\n b) SCISSOR BEATS PAPER\n\n c)PAPER BEATS ROCK\n\n choose from the following option \n 1.ROCK \n 2.Paper \n3.Scissor\n\n")
+
+#taking user input
+player_choice = int(input("enter your choice:"))
+possible_selection = [1, 2, 3]
+if player_choice not in possible_selection:
+    print("COME ON! IT AIN'T THAT HARD TO CHOOSE FROM THE OPTIONS")
+computer_selection = random.choice(possible_selection)
+
+#setting the conditions for winning and losing
+if player_choice == computer_selection:
+    print("ITS A TIEEEEEEEEE!!!!!!")
+elif (computer_selection == 2
+      and player_choice == 1) or (computer_selection == 3 and player_choice
+                                  == 2) or (computer_selection == 1
+                                            and player_choice == 3):
+    print("BOOOO YOU LOST NVM TRY AGAIN")
+else:
+    print("YOU WONNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN!!!!!!!! CONGRATULATIONS")
