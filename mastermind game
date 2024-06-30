@@ -1,0 +1,71 @@
+def numberone(player_id):
+    while True:
+        num1 = input(f"Enter a multi-digit number, {player_id}: ")
+        if num1.isdigit() and len(num1) >= 2:
+            return num1
+        else:
+            print("Invalid input. Please enter a multi-digit number.")
+
+
+def GU(player_id):
+    while True:
+        guess = input(f"Take a guess, {player_id}: ")
+        if guess.isdigit() and len(guess) >= 2:
+            return guess
+        else:
+            print("Invalid input. Please enter a valid guess.")
+
+
+def give_hint(num1, guess):
+    hint = ""
+    for i in range(len(num1)):
+        if num1[i] == guess[i]:
+            hint += "x"
+        elif guess[i] in num1:
+            hint += "0"
+        else:
+            hint += "-"
+    return hint
+
+
+def play_game(player1_id, player2_id):
+    # Player 1 sets the number
+    num1 = numberone(player1_id)
+    print("Player 1 has entered the number.")
+    numberofguess_player2 = 0
+
+    while True:
+        guess = GU(player2_id)
+        numberofguess_player2 += 1
+        if guess == num1:
+            print(
+                f"Congratulations, {player2_id}! You guessed the number in {numberofguess_player2} tries.")
+            break
+        else:
+            print("Hint:", give_hint(num1, guess))
+
+    # Player 2 sets the number
+    num2 = numberone(player2_id)
+    print("Player 2 has entered the number.")
+    numberofguess_player1 = 0
+
+    while True:
+        guess = GU(player1_id)
+        numberofguess_player1 += 1
+        if guess == num2:
+            print(
+                f"Congratulations, {player1_id}! You guessed the number in {numberofguess_player1} tries."
+            )
+            break
+        else:
+            print("Hint:", give_hint(num2, guess))
+
+    # Determine the winner
+    if numberofguess_player1 < numberofguess_player2:
+        print(f"{player1_id} wins and is crowned Mastermind!")
+    else:
+        print(f"{player2_id} wins and is crowned Mastermind!")
+
+
+# Play the game
+play_game("Player 1", "Player 2")
